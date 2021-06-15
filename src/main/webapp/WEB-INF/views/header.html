@@ -1,0 +1,54 @@
+﻿<!DOCTYPE html>
+<html lang="ko">
+
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta name="Author" content="">
+  <meta name="Keywords" content="">
+  <meta name="Description" content="">
+
+  <script src="/js/jquery-3.3.1.min.js"></script>
+  <script type="text/javascript" src="/js/common.js"></script>
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+  <link href="/css/common.css?ver=999" rel="stylesheet">
+  <link href="/css/layout.css?ver=9999" rel="stylesheet" >	<!--?ver=1를 붙이면 레이아웃을 새로고침해준다.-->
+  
+ </head>
+
+<body onload="init();">
+<form name="product">
+
+		<c:if test="${sessionID == ''}">
+					<li><a href="login">LOGIN</a></li>
+		</c:if>
+		<c:if test="${sessionID != ''}">
+					<li><a href="memberMyInfo">MYINFO</a></li>
+					<li><a href="memberLogout">LOGOUT</a></li>
+		
+		
+	<br><br>
+	
+	
+	
+	
+	<c:forEach items="${member}" var="mem">
+		<c:forEach items="${charging}" var="charg">
+		
+		<input type="hidden" name="totalPoint" value="${charg.totalPoint}">
+		<input type="hidden" name="userId" value="${idd}">
+		<input type="hidden" name="userPw" value="${pww}">
+		
+			<div>
+				<p>${mem.userName} 님 환영합니다.</p>
+				<p>나의 포인트 : ${charg.totalPoint}</p>
+			</div>
+			<br>
+			<div>
+				<input type="button" value="충전하기" class="submit" onClick="goCharging();">
+			</div>
+		
+		<br>
+		</c:forEach>
+	</c:forEach>
+	</c:if>
+		
